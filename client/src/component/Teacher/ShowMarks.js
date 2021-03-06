@@ -73,19 +73,21 @@ const ShowMarks = () => {
                                 <option value="Production">Production</option>
                             </select><br />
                         </div>
+                    </div>
 
-                        <div className="row">
-                            <div className="col">
-                                <select className="form-select" name="section" onChange={handleChange} required>
-                                    <option value="" defaultValue hidden >Section</option>
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                </select><br />
-                            </div>
+                    <div className="row">
+                        <div className="col">
+                            <select className="form-select" name="section" onChange={handleChange} required>
+                                <option value="" defaultValue hidden >Section</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select><br />
                         </div>
+                    </div>
 
+                    <div className="row">
                         <div className="col">
                             <select className="form-select" name="year" onChange={handleChange} required>
                                 <option value="" defaultValue hidden >Year</option>

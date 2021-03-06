@@ -136,8 +136,6 @@ const MarkTest = () => {
                                     <tr>
                                         <th scope="col">Sr No.</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Branch</th>
-                                        <th scope="col">Section</th>
                                         <th scope="col">Marks</th>
                                     </tr>
                                 </thead>
@@ -149,8 +147,6 @@ const MarkTest = () => {
                                         <tr key={data?._id}>
                                             <th scope="row">{index+1}</th>
                                             <td>{`${data?.firstName} ${data?.lastName}`}</td>
-                                            <td>{data?.branch}</td>
-                                            <td>{data?.section}</td>
                                             <td><input className="form-control marks-input" type="number" name={data?._id} min={0} max={totalMarks} onChange={handleInputChange} /><p>/{totalMarks}</p></td>
                                         </tr>
                                         ))

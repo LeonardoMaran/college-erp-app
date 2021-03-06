@@ -6,7 +6,7 @@ const Home = () => {
         
         <div className="centered">
 
-            <div className="container row">
+            <div className="row">
 
                 <div className="col-lg-12">
                     <h1 id="main-heading" className="display-5">College ERP</h1>

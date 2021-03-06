@@ -13,6 +13,7 @@ const StudentNavbar = () => {
 
     const data = JSON.parse(localStorage.getItem("profile"));
     const [name, setName] = useState(`${data.result.firstName} ${data.result.lastName}`);
+    const [id, setId] = useState(data.result._id);
 
     const handleClick = () => {
         dispatch(studentLogout(history));
@@ -29,6 +30,7 @@ const StudentNavbar = () => {
         }
 
         setName(`${data.result.firstName} ${data.result.lastName}`);
+        setId(data.result._id);
     }, [location]);
 
 
@@ -68,7 +70,7 @@ const StudentNavbar = () => {
                         </li>
 
                         <li className="nav-item">
-                            <Link className="nav-link" onClick={() => dispatch(showStudentSubjects(data.result._id))} to="/student/showStudentSubjects">Subjects</Link>
+                            <Link className="nav-link" onClick={() => dispatch(showStudentSubjects(id))} to="/student/showStudentSubjects">Subjects</Link>
                         </li>
 
                         <li className="nav-item">

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
+import { showStudentSubjects } from "../../actions/student";
 import { CLEAR } from "../../constants/actionTypes";
 
 const ShowStudentSubjects = () => {
@@ -13,7 +14,7 @@ const ShowStudentSubjects = () => {
     const location = useLocation();
 
     useEffect(() => {
-        dispatch({ type: CLEAR });
+        dispatch(showStudentSubjects(id));
     }, [location])
 
     return (

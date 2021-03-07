@@ -1,10 +1,14 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
 import Admin from "../models/adminModel.js";
 import Teacher from "../models/teacherModel.js";
 import Student from "../models/studentModel.js";
 import Subject from "../models/subjectModel.js";
+
+dotenv.config();
+const JWT_AUTH_TOKEN = process.env.JWT_AUTH_TOKEN || "";
 
 export const adminLogin = async (req, res) => {
 
@@ -21,7 +25,7 @@ export const adminLogin = async (req, res) => {
         if (!isPasswordCorrect)
             return res.json({ message: "Invalid Credentials" });
 
-        const token = jwt.sign({ email: foundAdmin.email, id: foundAdmin._id }, "test", { expiresIn: "1h" });
+        const token = jwt.sign({ email: foundAdmin.email, id: foundAdmin._id }, JWT_AUTH_TOKEN, { expiresIn: "1h" });
 
         return res.json({ result: foundAdmin, token });
     } catch (error) {

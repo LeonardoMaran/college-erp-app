@@ -1,8 +1,4 @@
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
-
-dotenv.config();
-const JWT_AUTH_TOKEN = process.env.JWT_AUTH_TOKEN || "";
 
 const auth = async (req, res, next) => {
     try {
@@ -11,7 +7,7 @@ const auth = async (req, res, next) => {
         let decodedData;
 
         if (token) {
-            decodedData = jwt.verify(token, JWT_AUTH_TOKEN);
+            decodedData = jwt.verify(token, "test");
             req.userId = decodedData?.id;
         }
 

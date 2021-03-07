@@ -1,16 +1,12 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 
 import Teacher from "../models/teacherModel.js";
 import Student from "../models/studentModel.js";
 import Attendance from "../models/attendanceModel.js";
 import Subject from "../models/subjectModel.js";
 import Mark from "../models/markModel.js";
-
-dotenv.config();
-const JWT_AUTH_TOKEN = process.env.JWT_AUTH_TOKEN || "";
 
 export const teacherLogin = async (req, res) => {
     try {
@@ -26,7 +22,7 @@ export const teacherLogin = async (req, res) => {
         if (!isPasswordCorrect)
             return res.json({ message: "Invalid Credentials" });
 
-        const token = jwt.sign({ email: foundTeacher.email, id: foundTeacher._id }, JWT_AUTH_TOKEN, { expiresIn: "1h" });
+        const token = jwt.sign({ email: foundTeacher.email, id: foundTeacher._id }, "test", { expiresIn: "1h" });
 
         return res.json({ result: foundTeacher, token });
     } catch (error) {
@@ -50,7 +46,7 @@ export const updateTeacher = async (req, res) => {
 
         await Teacher.findByIdAndUpdate(id, updatedTeacher, { new: true });
 
-        const token = jwt.sign({ email: updatedTeacher.email, id: updatedTeacher._id }, JWT_AUTH_TOKEN, { expiresIn: "1h" });
+        const token = jwt.sign({ email: updatedTeacher.email, id: updatedTeacher._id }, "test", { expiresIn: "1h" });
 
         return res.json({ result: updatedTeacher, message: "Successfully updated", token });
     } catch (error) {
@@ -96,7 +92,7 @@ export const updateTeacherPassword = async (req, res) => {
 
         await Teacher.findByIdAndUpdate(id, updatedTeacher, { new: true });
 
-        const token = jwt.sign({ email: updatedTeacher.email, id: updatedTeacher._id }, JWT_AUTH_TOKEN, { expiresIn: "1h" });
+        const token = jwt.sign({ email: updatedTeacher.email, id: updatedTeacher._id }, "test", { expiresIn: "1h" });
 
         return res.json({ result: updatedTeacher, message: "Successfully updated", token });
     } catch (error) {

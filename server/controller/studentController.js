@@ -1,15 +1,11 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 
 import Student from "../models/studentModel.js";
 import Subject from "../models/subjectModel.js";
 import Attendance from "../models/attendanceModel.js";
 import Mark from "../models/markModel.js"; 
-
-dotenv.config();
-const JWT_AUTH_TOKEN = process.env.JWT_AUTH_TOKEN || "";
 
 export const studentLogin = async (req, res) => {
     try {
@@ -25,7 +21,7 @@ export const studentLogin = async (req, res) => {
         if (!isPasswordCorrect)
             return res.json({ message: "Invalid Credentials" });
 
-        const token = jwt.sign({ email: foundStudent.email, id: foundStudent._id }, JWT_AUTH_TOKEN, { expiresIn: "1h" });
+        const token = jwt.sign({ email: foundStudent.email, id: foundStudent._id }, "test", { expiresIn: "1h" });
 
         return res.json({ result: foundStudent, token });
     } catch (error) {
@@ -49,7 +45,7 @@ export const updateStudent = async (req, res) => {
 
         await Student.findByIdAndUpdate(id, updatedStudent, { new: true });
 
-        const token = jwt.sign({ email: updatedStudent.email, id: updatedStudent._id }, JWT_AUTH_TOKEN, { expiresIn: "1h" });
+        const token = jwt.sign({ email: updatedStudent.email, id: updatedStudent._id }, "test", { expiresIn: "1h" });
 
         return res.json({ result: updatedStudent, message: "Successfully updated", token });
     } catch (error) {
@@ -96,7 +92,7 @@ export const updateStudentPassword = async (req, res) => {
 
         await Student.findByIdAndUpdate(id, updatedStudent, { new: true });
 
-        const token = jwt.sign({ email: updatedStudent.email, id: updatedStudent._id }, JWT_AUTH_TOKEN, { expiresIn: "1h" });
+        const token = jwt.sign({ email: updatedStudent.email, id: updatedStudent._id }, "test", { expiresIn: "1h" });
 
         return res.json({ result: updatedStudent, message: "Successfully updated", token });
     } catch (error) {
